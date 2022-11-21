@@ -1,6 +1,6 @@
 ## Front-End technical test 
 
-![](https://drive.google.com/file/d/1zzh50y4YPFnSkWPTsb4H8Gv2-ooWYepx/view?usp=share_link)
+![screenshot](https://uploaddeimagens.com.br/images/004/170/545/original/Captura_de_Tela_2022-11-21_a%CC%80s_07.52.19.png?1669033223)
 
 ## About The Project 
 application to calculate prepayment values in future terms
