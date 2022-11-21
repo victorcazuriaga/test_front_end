@@ -7,7 +7,10 @@ export const Container = styled.div`
     border: 4px solid #F6FAFA ;
     border-radius: 8px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-
+    @media screen and (max-width:600px) {
+        display:flex;
+        flex-direction:column;
+    }
 `;
 
 
@@ -21,6 +24,7 @@ export const Box = styled.div<Props>`
     align-items:center;
     background-color: ${props => props.primary ? "#F6FAFA" : "white" };
     padding: 10px;
+    
 `; 
 
 export const FieldInput = styled.input`
@@ -31,6 +35,9 @@ export const FieldInput = styled.input`
     background-color: white;
     border-radius: 3px;
     margin:8px;
+    @media screen and (max-width:882px) {
+        width:200px
+    }
   `
 
 export const Title = styled.h1<Props>`
