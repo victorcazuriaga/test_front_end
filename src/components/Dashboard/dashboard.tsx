@@ -19,8 +19,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 export function Dashboard(): JSX.Element {
   const [response, setResponse] = useState<any>([]);
   const [checkBox, setCheckBox] = useState<boolean>(true);
+  const [days, setDays] = useState<Array<number>>([]);
 
-  console.log(checkBox);
   let schema = yup.object().shape({
     amount: yup.number().min(1000).required(),
     installments: yup.number().min(1).max(12).required(),
@@ -33,9 +33,21 @@ export function Dashboard(): JSX.Element {
   } = useForm<FormsDashboard>({
     resolver: yupResolver(schema),
   });
+  const addDay = (value: number) => {
+    setDays((prevState) => [...prevState, value]);
+  };
+  const onDeleteDay = (index: number) => {
+    setDays((prevState) => {
+      prevState.splice(index, 1);
+      return [...prevState];
+    });
+  };
 
   const onSubmit: SubmitHandler<FormsDashboard> = (data) => {
-    console.log(data);
+    if (!checkBox) {
+      data = { ...data, days: days };
+    }
+
     axios
       .post("https://frontend-challenge-7bu3nxh76a-uc.a.run.app", data)
       .then((data) => {
@@ -53,7 +65,12 @@ export function Dashboard(): JSX.Element {
   return (
     <Container>
       <Box size="200px" flex={2}>
-        <Title fontSize="36px" color="#A9A9A9" fontWeight={800}>
+        <Title
+          fontSize="36px"
+          color="#A9A9A9"
+          fontWeight={800}
+          marginBottom="15px"
+        >
           Simule sua Atencipação
         </Title>
         <div>
@@ -88,7 +105,7 @@ export function Dashboard(): JSX.Element {
             </div>
             {!checkBox && (
               <>
-                <InputTags props={register("days")}></InputTags>
+                <InputTags {...{ addDay, onDeleteDay, days }}></InputTags>
               </>
             )}
             <Button
@@ -103,7 +120,7 @@ export function Dashboard(): JSX.Element {
       </Box>
       <Box size="200px" primary>
         <div className="title_result">
-          <Title fontSize="18px" color="#4682B4">
+          <Title fontSize="18px" color="#4682B4" marginBottom="40px">
             VOCÊ RECEBERÂ:
           </Title>
         </div>
