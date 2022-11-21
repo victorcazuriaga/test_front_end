@@ -26,6 +26,7 @@ To start the project, follow the steps below
 http://localhost:3000/
  ```
 
+## Deploy
 
 if you think it's better, you can also access the application through deploy
  
